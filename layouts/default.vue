@@ -97,7 +97,7 @@
         </nav>
       </div>
     </header>
-    <cart :is-open="isCartOpen" @close="toggleCart" />
+    <cart :products="products" :is-open="isCartOpen" @close="toggleCart" />
     <nuxt />
     <footer class="bg-gray-200">
       <div
@@ -121,6 +121,9 @@ export default {
   computed: {
     isCartOpen() {
       return cartState.open
+    },
+    products() {
+      return cartState.items
     },
   },
   methods: {
