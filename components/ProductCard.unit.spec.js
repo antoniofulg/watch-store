@@ -39,8 +39,6 @@ describe('ProductCard - unit', () => {
   it('should mount the component', () => {
     const { wrapper } = mountProductCard()
 
-    console.log(wrapper.html())
-
     expect(wrapper.vm).toBeDefined()
     expect(wrapper.text()).toContain('Relógio bonito')
     expect(wrapper.text()).toContain('$22.00')
