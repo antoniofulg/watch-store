@@ -8,6 +8,13 @@
       />
       <div class="mx-3">
         <h3 class="text-sm text-gray-600">{{ product.title }}</h3>
+        <button
+          class="flex items-center justify-center px-1 bg-red-600 text-white text-sm font-small rounded hover:bg-red-500 focus:outline-none focus:bg-red-500"
+          data-testid="remove-button"
+          @click="$cart.removeProduct(product.id)"
+        >
+          Remover
+        </button>
         <div class="flex items-center mt-2">
           <button
             data-testid="-"
