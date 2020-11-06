@@ -1,5 +1,5 @@
 {
-  "plugins": ["cypress"],
+  "plugins": ["prettier", "cypress"],
   "env": {
     "cypress/globals": true
   }
