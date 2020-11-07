@@ -23,15 +23,17 @@ context('Store', () => {
   })
 
   context.only('Store > Shopping Cart', () => {
-    it('should not display shopping cart when page first lodas', () => {
-      cy.visit('/')
+    beforeEach(() => {
+      server.createList('product', 10)
 
+      cy.visit('/')
+    })
+
+    it('should not display shopping cart when page first lodas', () => {
       gid('shopping-cart').should('have.class', 'hidden')
     })
 
     it('should toggle shopping cart visibility when button is clicked', () => {
-      cy.visit('/')
-
       gid('toggle-button').as('toggleButton')
 
       gid('shopping-cart').as('shoppingCart')
@@ -43,6 +45,26 @@ context('Store', () => {
       g('@toggleButton').click()
 
       g('@shoppingCart').should('have.class', 'hidden')
+    })
+
+    it('should open shopping cart when a product is added', () => {
+      gid('product-card').first().find('button').click()
+
+      gid('shopping-cart').should('not.have.class', 'hidden')
+    })
+
+    it('should add first product to the cart', () => {
+      gid('product-card').first().find('button').click()
+
+      gid('cart-item').should('have.length', 1)
+    })
+
+    it.only('should add 3 products to the cart', () => {
+      gid('product-card').eq(1).find('button').click()
+      gid('product-card').eq(4).find('button').click()
+      gid('product-card').eq(9).find('button').click()
+
+      gid('cart-item').should('have.length', 3)
     })
   })
 
